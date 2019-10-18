@@ -1,2 +1,3 @@
-# Pyhon_learn.
-Myfirst change
+# Pyhon_learn
+My first git repository
+
