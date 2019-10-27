@@ -3,3 +3,4 @@ def mult(a,b):
 
 mult(32,4)
 
+print(mult(11, 5))
