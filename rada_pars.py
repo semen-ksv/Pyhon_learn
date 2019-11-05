@@ -3,7 +3,9 @@ from bs4 import BeautifulSoup
 import time
 import webbrowser
 
-head = {'accept': '*/*', 'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/537.36'}
+head = {'accept': '*/*',
+        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'
+                      ' AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/537.36'}
 
 
 def get_html(head, url):
@@ -55,7 +57,11 @@ def main():
     for word in search_words:
         if any(word in name_bill for name_bill in text_page):
             webbrowser.open('http://w1.c1.rada.gov.ua/pls/zweb2/webproc555')
-            print('Найден законопроект со словом: ' + word.upper())
+
+            for word in search_words:
+                for name_bill in text_page:
+                    if word in name_bill:
+                        print('Найден законопроект со словом: ' + word.upper() + ' в ' + name_bill)
 
 
     # ---------------альтернативный поиск-----------------
@@ -66,10 +72,7 @@ def main():
     # print(f'Найдено {len(find_word)} слов - {find_word}')
 
     # ----------------------2)
-    # for word in search_words:
-    #     for name_bill in text_page:
-    #         if word in name_bill:
-    #              print('Найден законопроект со словом: ' + word.upper() + ' в ' + name_bill)
+
 
 if __name__ == '__main__':
     while True:
