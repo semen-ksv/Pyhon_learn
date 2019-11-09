@@ -5,7 +5,7 @@ from ship import Ship
 import game_functions as gf
 from alien import Alien
 from pygame.sprite import Group
-# from stats import GameStats
+from stats import GameStats
 
 clock = pygame.time.Clock()
 
