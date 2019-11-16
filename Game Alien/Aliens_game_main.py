@@ -1,4 +1,3 @@
-
 import pygame
 from setgame import Settings
 from ship import Ship
