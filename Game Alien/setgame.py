@@ -18,7 +18,7 @@ class Settings():
         self.bullet_color = 255, 0,  0
         self.bullets_allowed = 30
         # Настройки пришельцев
-        self.alien_speed_factor = 3
+        self.alien_speed_factor = 30
         # величиной снижения флота
         self.fleet_drop_speed = 15
         # fleet_direction = 1 обозначает движение вправо; а -1 - влево.

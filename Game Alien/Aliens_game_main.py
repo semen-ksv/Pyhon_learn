@@ -5,6 +5,7 @@ import game_functions as gf
 from alien import Alien
 from pygame.sprite import Group
 from stats import GameStats
+from button import Button
 
 clock = pygame.time.Clock()
 
@@ -16,6 +17,8 @@ def run_game():
     screen = pygame.display.set_mode((ai_settings.screen_width, ai_settings.screen_height))
     # screen = pygame.display.set_mode((1200, 800))
     pygame.display.set_caption("Alien Inv")
+    play_button = Button(ai_settings, screen, "Play")
+    stats = GameStats(ai_settings)
     # bg_color = (200, 200, 200)
     # Создание корабля
     ship = Ship(ai_settings, screen)
@@ -29,6 +32,7 @@ def run_game():
 
 
 
+
     # Запуск основного цикла игры.
     while True:
         # Отслеживание событий клавиатуры и мыши.
@@ -36,9 +40,10 @@ def run_game():
         #     if event.type == pygame.QUIT:
         #         sys.exit()
         # gf.check_events(ship)   # замена вышеуказаного цикла на модуль game_function
-        gf.check_events(ai_settings, screen, ship, bullets)
+        gf.check_events(ai_settings, screen, stats, play_button, ship, bullets)
+        if stats.game_active:
 
-        ship.updete()           # запуск движение корабля
+            ship.updete()           # запуск движение корабля
 
         # # заливка фона, при каждом проходе цикла, цветом для удаления следа картинки
         # screen.fill(ai_settings.bg_color)
@@ -52,11 +57,11 @@ def run_game():
         #     if bullet.rect.bottom <= 0:
         #         bullets.remove(bullet)
         # gf.update_bullets(bullets)  # замена вышеуказаного на новую фукцию
-        gf.update_bullets(ai_settings, screen, ship, aliens, bullets)  # замена вышеуказаного на новую фукцию
-        gf.update_aliens(ai_settings, aliens)
-        #gf.update_screen(ai_settings, screen, ship, bullets) # заменяем выше обновление экрана модулем gf
-        gf.update_screen(ai_settings, screen, ship, aliens, bullets)
-        clock.tick(100)
+            gf.update_bullets(ai_settings, screen, ship, aliens, bullets)  # замена вышеуказаного на новую фукцию
+            gf.update_aliens(ai_settings, stats, screen, ship, aliens, bullets)
+            #gf.update_screen(ai_settings, screen, ship, bullets) # заменяем выше обновление экрана модулем gf
+            gf.update_screen(ai_settings, screen, stats, ship, aliens, bullets, play_button)
+            clock.tick(100)
 
 run_game()
 
