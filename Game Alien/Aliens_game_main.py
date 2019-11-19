@@ -40,7 +40,7 @@ def run_game():
         #     if event.type == pygame.QUIT:
         #         sys.exit()
         # gf.check_events(ship)   # замена вышеуказаного цикла на модуль game_function
-        gf.check_events(ai_settings, screen, stats, play_button, ship, bullets)
+        gf.check_events(ai_settings, screen, stats, play_button, ship, aliens, bullets)
         if stats.game_active:
 
             ship.updete()           # запуск движение корабля
