@@ -58,7 +58,7 @@ def run_game():
         #     if bullet.rect.bottom <= 0:
         #         bullets.remove(bullet)
         # gf.update_bullets(bullets)  # замена вышеуказаного на новую фукцию
-            gf.update_bullets(ai_settings, screen, ship, aliens, bullets)  # замена вышеуказаного на новую фукцию
+            gf.update_bullets(ai_settings, screen, stats, score, ship, aliens, bullets)  # замена вышеуказаного на новую фукцию
             gf.update_aliens(ai_settings, stats, screen, ship, aliens, bullets)
             #gf.update_screen(ai_settings, screen, ship, bullets) # заменяем выше обновление экрана модулем gf
             gf.update_screen(ai_settings, screen, stats, score, ship, aliens, bullets, play_button)

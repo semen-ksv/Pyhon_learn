@@ -8,6 +8,8 @@ class GameStats:
         self.ai_settings = ai_settings
         self.reset_stats()
         self.game_active = True
+        # Рекорд не должен сбрасываться.
+        self.high_score = 0
         # self.high = hi_score
         # self.high_score = self.high
 
