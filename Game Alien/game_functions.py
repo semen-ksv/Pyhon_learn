@@ -42,7 +42,7 @@ def check_keyup_events(event, ship):
         ship.moving_left = False
 
 
-def check_events(ai_settings, screen, stats, play_button, ship, aliens, bullets):
+def check_events(ai_settings, screen, stats, score, play_button, ship, aliens, bullets):
     """Обрабатывает нажатия клавиш и события мыши."""
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -64,9 +64,9 @@ def check_events(ai_settings, screen, stats, play_button, ship, aliens, bullets)
             check_keyup_events(event, ship)
         elif event.type == pygame.MOUSEBUTTONDOWN:
             mouse_x, mouse_y = pygame.mouse.get_pos()
-            check_play_button(ai_settings, screen, stats, play_button, ship, aliens, bullets, mouse_x, mouse_y)
+            check_play_button(ai_settings, screen, stats, score, play_button, ship, aliens, bullets, mouse_x, mouse_y)
 
-def check_play_button(ai_settings, screen, stats, play_button, ship, aliens, bullets, mouse_x, mouse_y):
+def check_play_button(ai_settings, screen, stats, score, play_button, ship, aliens, bullets, mouse_x, mouse_y):
     """Запускает новую игру при нажатии кнопки Play."""
     button_clicked = play_button.rect.collidepoint(mouse_x, mouse_y)
     if button_clicked and not stats.game_active:
@@ -77,6 +77,11 @@ def check_play_button(ai_settings, screen, stats, play_button, ship, aliens, bul
         # Сброс игровой статистики.
         stats.reset_stats()
         stats.game_active = True
+        # Сброс изображений счетов и уровня.
+        score.prep_score()
+        score.prep_high_score()
+        score.prep_level()
+        score.prep_ships()
         # Очистка списков пришельцев и пуль.
         aliens.empty()
         bullets.empty()
@@ -117,6 +122,8 @@ def update_bullets(ai_settings, screen, stats, score, ship, aliens, bullets):
     # Уничтожение существующих пуль и создание нового флота.
         bullets.empty()
         ai_settings.increase_speed()
+        stats.level += 1
+        score.prep_level()
         create_fleet(ai_settings, screen, ship, aliens)
 
     # Удаление пуль, вышедших за край экрана
@@ -185,11 +192,13 @@ def change_fleet_direction(ai_settings, aliens):
     ai_settings.fleet_direction *= -1
 
 
-def ship_hit(ai_settings, stats, screen, ship, aliens, bullets):
+def ship_hit(ai_settings, screen, stats, score, ship, aliens, bullets):
     """Обрабатывает столкновение корабля с пришельцем."""
     if stats.ships_left > 0:
         stats.ships_left -= 1
-
+        # Обновление игровой информации.
+        score.prep_ships()
+        # Очистка списков пришельцев и пуль.
         aliens.empty()
         bullets.empty()
 
@@ -202,25 +211,25 @@ def ship_hit(ai_settings, stats, screen, ship, aliens, bullets):
         pygame.mouse.set_visible(True)
 
 
-def check_aliens_bottom(ai_settings, stats, screen, ship, aliens, bullets):
+def check_aliens_bottom(ai_settings, screen, stats, score, ship, aliens, bullets):
     """Проверяет, добрались ли пришельцы до нижнего края экрана."""
     screen_rect = screen.get_rect()
     for alien in aliens.sprites():
         if alien.rect.bottom >= screen_rect.bottom:
             # Происходит то же, что при столкновении с кораблем.
-            ship_hit(ai_settings, stats, screen, ship, aliens, bullets)
+            ship_hit(ai_settings, stats, score, screen, ship, aliens, bullets)
             break
 
 
 
-def update_aliens(ai_settings, stats, screen, ship, aliens, bullets):
+def update_aliens(ai_settings, screen, stats, score, ship, aliens, bullets):
     """Проверяет, достиг ли флот края экрана, после чего обновляет позиции всех пришельцев во флоте"""
     check_fleet_edges(ai_settings, aliens)
     aliens.update()
     if pygame.sprite.spritecollideany(ship, aliens):
-        ship_hit(ai_settings, stats, screen, ship, aliens, bullets)
-    # Проверка пришельцев, добравшихся до нижнего края экрана.
-    check_aliens_bottom(ai_settings, stats, screen, ship, aliens,bullets)
+        ship_hit(ai_settings, screen, stats, score, ship, aliens, bullets)
+        # Проверка пришельцев, добравшихся до нижнего края экрана.
+        check_aliens_bottom(ai_settings, screen, stats, score, ship, aliens, bullets)
 
 def check_high_score(stats, score):
     """Проверяет, появился ли новый рекорд."""

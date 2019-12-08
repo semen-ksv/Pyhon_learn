@@ -41,7 +41,7 @@ def run_game():
         #     if event.type == pygame.QUIT:
         #         sys.exit()
         # gf.check_events(ship)   # замена вышеуказаного цикла на модуль game_function
-        gf.check_events(ai_settings, screen, stats, play_button, ship, aliens, bullets)
+        gf.check_events(ai_settings, screen, stats, score, play_button, ship, aliens, bullets)
         if stats.game_active:
 
             ship.updete()           # запуск движение корабля
@@ -59,7 +59,7 @@ def run_game():
         #         bullets.remove(bullet)
         # gf.update_bullets(bullets)  # замена вышеуказаного на новую фукцию
             gf.update_bullets(ai_settings, screen, stats, score, ship, aliens, bullets)  # замена вышеуказаного на новую фукцию
-            gf.update_aliens(ai_settings, stats, screen, ship, aliens, bullets)
+            gf.update_aliens(ai_settings, stats, score, screen, ship, aliens, bullets)
             #gf.update_screen(ai_settings, screen, ship, bullets) # заменяем выше обновление экрана модулем gf
             gf.update_screen(ai_settings, screen, stats, score, ship, aliens, bullets, play_button)
             clock.tick(100)

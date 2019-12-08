@@ -14,6 +14,7 @@ class GameStats:
         # self.high_score = self.high
 
     def reset_stats(self):
+        """Инициализирует статистику, изменяющуюся в ходе игры."""
         self.ships_left = self.ai_settings.ship_limit
         self.score = 0
         self.level = 1
