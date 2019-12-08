@@ -2,6 +2,7 @@ import pygame
 from pygame.sprite import Group
 from ship import Ship
 
+
 class Score():
     """Класс для вывода игровой информации."""
 
@@ -24,7 +25,7 @@ class Score():
 
     def prep_score(self):
         """Преобразует текущий счет в графическое изображение."""
-        score_str = str (self.stats.score)
+        score_str = str(self.stats.score)
         rounded_score = int(round(self.stats.score, -1))
         score_str = "{:,}".format(rounded_score)
         self.score_image = self.font.render(score_str, True, self.text_color)

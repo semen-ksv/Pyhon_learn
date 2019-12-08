@@ -13,7 +13,7 @@ class Settings():
         self.ship_speed_factor = 20
         # Параметры пули
         self.bullet_speed_factor = 15
-        self.bullet_width = 4
+        self.bullet_width = 5
         self.bullet_height = 25
         self.bullet_color = 255, 0,  0
         self.bullets_allowed = 30
@@ -26,7 +26,7 @@ class Settings():
         self.initialize_dynamic_settings()
         self.initialize_dynamic_settings()
         # величиной снижения флота
-        self.fleet_drop_speed = 15
+        self.fleet_drop_speed = 20
         # fleet_direction = 1 обозначает движение вправо; а -1 - влево.
         self.fleet_direction = 1
         self.ship_limit = 3
