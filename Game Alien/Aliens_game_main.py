@@ -6,6 +6,7 @@ from alien import Alien
 from pygame.sprite import Group
 from stats import GameStats
 from button import Button
+from score_board import Score
 
 clock = pygame.time.Clock()
 
@@ -18,7 +19,9 @@ def run_game():
     # screen = pygame.display.set_mode((1200, 800))
     pygame.display.set_caption("Alien Inv")
     play_button = Button(ai_settings, screen, "Play")
+    # Создание экземпляров GameStats и Score.
     stats = GameStats(ai_settings)
+    score = Score(ai_settings,screen,stats)
     # bg_color = (200, 200, 200)
     # Создание корабля
     ship = Ship(ai_settings, screen)
@@ -29,8 +32,6 @@ def run_game():
      # Создание флота пришельцев.
     aliens = Group()
     gf.create_fleet(ai_settings, screen, ship, aliens)
-
-
 
 
     # Запуск основного цикла игры.
@@ -60,7 +61,7 @@ def run_game():
             gf.update_bullets(ai_settings, screen, ship, aliens, bullets)  # замена вышеуказаного на новую фукцию
             gf.update_aliens(ai_settings, stats, screen, ship, aliens, bullets)
             #gf.update_screen(ai_settings, screen, ship, bullets) # заменяем выше обновление экрана модулем gf
-            gf.update_screen(ai_settings, screen, stats, ship, aliens, bullets, play_button)
+            gf.update_screen(ai_settings, screen, stats, score, ship, aliens, bullets, play_button)
             clock.tick(100)
 
 run_game()
