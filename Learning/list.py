@@ -75,9 +75,9 @@ german_cars = ['BMW', 'VW']
 # перебор по двух списках на соответсвие
 for car in cars:
     if car in german_cars:
-        print(car + ' is german car')
+        print(car + ' is german automobile')
     else:
-        print(car + ' isn\'t german car')
+        print(car + ' isn\'t german automobile')
 
 # удалить повторяющиеся элементы списка
 lst = ["a", "b", "a", "c", "c"]

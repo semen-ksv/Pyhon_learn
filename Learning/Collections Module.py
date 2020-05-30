@@ -1,13 +1,13 @@
-a = [1,2,3,4]
-c = [i for i in a if i%2==0]
-b = (i for i in a if i%2==0)
+a = [1, 2, 3, 4]
+c = [i for i in a if i % 2 == 0]
+b = (i for i in a if i % 2 == 0)
 print(c)
 print(list(q for q in b))
-#=====================================================
+# =====================================================
 
 from collections import Counter
 
-l = [1,1,1,2,3,3,5,5,5,5,6,7,8,8,8,8,8,9,4,5,8,9,9,9]
+l = [1, 1, 1, 2, 3, 3, 5, 5, 5, 5, 6, 7, 8, 8, 8, 8, 8, 9, 4, 5, 8, 9, 9, 9]
 s = 'some some words in text text text'
 
 print(Counter(l))
@@ -19,7 +19,7 @@ print(words.items())
 print(sum(Counter(l)))
 print(list(words))
 print(set(words))
-#=========================================================
+# =========================================================
 
 from collections import defaultdict
 
@@ -30,18 +30,20 @@ w['p'] = 2
 for i in w:
     print(i)
 print(w)
-#=========================================================
+# =========================================================
 
 from collections import OrderedDict
+
 '''словарь запоминает порядок в словаре в отличии от обычного словаря'''
 t = OrderedDict()
 t['a'] = 1
 t['b'] = 2
 t['x'] = 3
 print(t)
-#==========================================================
+# ==========================================================
 
 from collections import namedtuple
+
 '''кортеж которий позволяет присваивать имена своим полям'''
 k = (1, 2, 3, 4, 5)
 print(k[0])
@@ -53,4 +55,3 @@ print(sam)
 print(sam.age)
 print(sam[1])
 print(guf.name)
-

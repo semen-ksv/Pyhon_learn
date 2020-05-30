@@ -31,7 +31,7 @@
 # myfile2.close()
 # # myfile.close()
 # myfile3.close()
-
+import os
 
 list1 = ['good', 'bad', 'real', 'strong']
 list2 = ['white', 'red', 'bad']
@@ -58,3 +58,31 @@ print('-------------')
 print(c, end='')
 print('-------------')
 f1.close()
+
+
+path = 'C:\\Windows\\help'
+
+# Пройтись по всем файлам в директории.
+for dirpath, dirnames, filenames in os.walk(path):
+    print(dirpath, dirnames, filenames)
+
+# В разных ОС путь записывается по разному: привести к нужному в этой ОС виду
+os.path.normpath(path)
+
+# Получить размер файла.
+os.path.getsize(path)
+
+# Получить дату модификации файла.
+os.path.getmtime(path)
+
+# вернет кол-во секунд с начала эпохи. преобразовать в года/месяца можно так
+import time
+time.gmtime()
+
+# сформирвать правильный путь к файлу с учетом особенностей ОС.
+# os.path.join(path1[, path2[, ...]])
+
+# получить родительскую директорию
+os.path.dirname(path)
+# получить родительскую директорию текущего модуля
+os.path.dirname(__file__)
