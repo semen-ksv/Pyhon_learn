@@ -1,5 +1,7 @@
 import datetime
+import time
 
+start_all = time.monotonic()
 t = datetime.time(5, 32, 4, 12)
 start = datetime.datetime.now()
 print(t)
@@ -27,3 +29,4 @@ print(timeit.timeit(c, number=10000))
 
 print(timeit.main())
 print(timeit.default_timer() - start_time)
+print(time.monotonic() - start_all)

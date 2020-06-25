@@ -30,6 +30,20 @@ w['p'] = 2
 for i in w:
     print(i)
 print(w)
+
+goods = [
+    ['meat', 22],
+    ['bread', 10],
+    ['milk', 2],
+    ['meat', 5],
+    ['bread', 7],
+    ['milk', 12]
+]
+
+goods_count = defaultdict(int) # int или (lambda: 0)
+for name, quantity in goods:
+    goods_count[name] += quantity
+print(goods_count)
 # =========================================================
 
 from collections import OrderedDict
